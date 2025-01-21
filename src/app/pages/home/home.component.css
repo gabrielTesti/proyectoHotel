@@ -1,0 +1,76 @@
+main {
+  padding: 20px;
+  max-width: 2000px;
+  margin: 0 auto;
+  background-color: #f9f9f9; /* Fondo claro para contraste */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-height: calc(100vh - 160px); /* Altura mínima para ocupar el espacio entre header y footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea los elementos al inicio */
+  align-items: center;
+}
+
+.intro, .services, .images {
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+.intro {
+  margin-bottom: 20px;
+  text-align: center; /* Centra el texto */
+}
+
+.intro h2 {
+  font-size: 38px; 
+  margin-bottom: 10px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.intro p {
+  font-size: 20px; /* Letras más grandes */
+  margin-bottom: 20px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.services {
+  text-align: left;
+  margin-bottom: 20px; /* Añade margen inferior para separar de las imágenes */
+}
+
+.services h3 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.service {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.service h4 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #7e4821a9; /* Marrón */
+}
+
+.service p {
+  font-size: 18px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.images {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.images img {
+  max-width: 30%; /* Ajusta el ancho de las imágenes */
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
