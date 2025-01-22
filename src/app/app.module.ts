@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInput, MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -29,6 +30,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ReservaPageComponent } from './pages/reserva-page/reserva-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { OperadorComponent } from './pages/operador/operador.component';
 
 
 @NgModule({
@@ -40,7 +43,9 @@ import { RegisterComponent } from './pages/register/register.component';
     HomeComponent,
     ReservaPageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    OperadorComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,8 @@ import { RegisterComponent } from './pages/register/register.component';
     MatButtonModule,
     MatInputModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule
     
   ],
   providers: [],

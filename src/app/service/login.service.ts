@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:4000/api'; // Ajusta esta URL según sea necesario
+  private apiUrl = 'http://localhost:4000/api'; 
   private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) { }
@@ -17,7 +17,7 @@ export class LoginService {
       tap(response => {
         if (response.codigo === 200 && response.payload && response.payload.length > 0) {
           localStorage.setItem('token', response.jwt);
-          localStorage.setItem('datosUsuario', JSON.stringify(response.payload[0])); // Guarda los datos del usuario
+          localStorage.setItem('datosUsuario', JSON.stringify(response.payload[0])); 
           this.loggedInSubject.next(true);
         } else {
           throw new Error('Respuesta del servidor no válida');
@@ -27,7 +27,7 @@ export class LoginService {
   }
 
   logout(): void {
-    localStorage.clear(); // Limpia completamente el localStorage
+    localStorage.clear(); 
     this.loggedInSubject.next(false);
   }
 
