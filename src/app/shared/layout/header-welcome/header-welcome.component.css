@@ -1,32 +1,34 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #7e4821a9; /* Marrón */
-    color: white;
-  }
-  
-  header h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  header div {
-    display: flex;
-    align-items: center;
-  }
-  
-  header button {
-    background-color: #A52A2A; /* Marrón oscuro */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 10px;
-  }
-  
-  header button:hover {
-    background-color: #7B3F00; /* Marrón más oscuro */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #7e4821a9; /* Marrón */
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+}
+
+header button {
+  background-color: #5D4037; /* Marrón oscuro */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+header button:hover {
+  background-color: #8D6E63; /* Marrón más claro */
+}

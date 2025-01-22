@@ -1,7 +1,14 @@
 <header>
-    <h1>Hotel Virtual</h1>
-    <div>
+  <h1>Hotel Virtual</h1>
+  <div>
+    <ng-container *ngIf="isLoggedIn; else notLoggedIn">
       <span>{{ userName }}</span>
-      <button (click)="logout()">Cerrar Sesión</button>
-    </div>
-  </header>
+      <button mat-button (click)="logout()">Cerrar Sesión</button>
+    </ng-container>
+    <ng-template #notLoggedIn>
+      <span>Bienvenido al Hotel Virtual</span>
+      <button mat-button (click)="openLogin()">Iniciar Sesión</button>
+      <button mat-button (click)="openRegister()">Registrarse</button>
+    </ng-template>
+  </div>
+</header>

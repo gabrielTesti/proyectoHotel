@@ -95,17 +95,19 @@ main {
 }
 
 .disponibilidad button {
-  background-color: #A52A2A; /* Marrón oscuro */
+  background-color: #5D4037; /* Marrón oscuro */
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   cursor: pointer;
   font-size: 16px;
   margin-top: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .disponibilidad button:hover {
-  background-color: #7B3F00; /* Marrón más oscuro */
+  background-color: #8D6E63; /* Marrón más claro */
 }
 
 .habitaciones-disponibles {
@@ -135,15 +137,18 @@ main {
   color: #5D3A1A; /* Marrón más oscuro */
 }
 
-.habitacion button {
-  background-color: #A52A2A; /* Marrón oscuro */
+.accept-button {
+  background-color: #5D4037; /* Marrón oscuro */
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.habitacion button:hover {
-  background-color: #7B3F00; /* Marrón más oscuro */
+.accept-button:hover {
+  background-color: #8D6E63; /* Marrón más claro */
 }

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from 'src/app/pages/login/login.component';
+import { RegisterComponent } from 'src/app/pages/register/register.component';
 
 @Component({
   selector: 'app-header-welcome',
@@ -7,12 +10,17 @@ import { Component } from '@angular/core';
 })
 export class HeaderWelcomeComponent {
 
-openLogin(){
+  constructor(public dialog: MatDialog) {}
 
-}
+  openLogin(): void {
+    this.dialog.open(LoginComponent, {
+      width: '400px'
+    });
+  }
 
-openRegister(){
-
-}
-
+  openRegister(): void {
+    this.dialog.open(RegisterComponent, {
+      width: '400px'
+    });
+  }
 }

@@ -1,0 +1,39 @@
+<h2>Registrarse</h2>
+<form (ngSubmit)="registrarUsuario()">
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="nombre" name="nombre" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Apellido</mat-label>
+    <input matInput [(ngModel)]="apellido" name="apellido" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="email" name="email" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Contraseña</mat-label>
+    <input matInput [(ngModel)]="password" name="password" type="password" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Confirmar Contraseña</mat-label>
+    <input matInput [(ngModel)]="confirmPassword" name="confirmPassword" type="password" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>DNI</mat-label>
+    <input matInput [(ngModel)]="dni" name="dni" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Fecha de Nacimiento</mat-label>
+    <input matInput [(ngModel)]="fecha_nacimiento" name="fecha_nacimiento" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Teléfono</mat-label>
+    <input matInput [(ngModel)]="telefono" name="telefono">
+  </mat-form-field>
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit">Aceptar</button>
+    <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancelar</button>
+  </div>
+</form>

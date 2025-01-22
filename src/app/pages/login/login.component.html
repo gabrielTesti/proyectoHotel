@@ -1,0 +1,15 @@
+<h2>Iniciar Sesión</h2>
+<form (ngSubmit)="login()">
+  <mat-form-field>
+    <mat-label>Usuario</mat-label>
+    <input matInput [(ngModel)]="usuario" name="usuario" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Contraseña</mat-label>
+    <input matInput [(ngModel)]="password" name="password" type="password" required>
+  </mat-form-field>
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit">Aceptar</button>
+    <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancelar</button>
+  </div>
+</form>
