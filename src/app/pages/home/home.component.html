@@ -1,0 +1,49 @@
+<app-header-welcome *ngIf="!estaLogueado"></app-header-welcome>
+<app-header-main *ngIf="estaLogueado"></app-header-main>
+
+<main>
+  <div class="intro">
+    <h2>Servicios de Reserva</h2>
+    <p>Reserva tu habitación en línea y disfruta de las mejores tarifas en nuestro hotel. Nuestro sistema de reservas en línea es fácil de usar y seguro.</p>
+  </div>
+
+  <div class="servicios">
+    <h3>Nuestras Habitaciones</h3>
+    <div class="servicio">
+      <h4>Habitaciones para 2 personas</h4>
+      <p>El hotel ofrece habitaciones para 2 personas en formato de camas simples y dobles. Una habitación de 2 personas puede ser 1 cama doble o 2 camas simples.</p>
+    </div>
+    <div class="servicio">
+      <h4>Habitaciones para 3 personas</h4>
+      <p>Las habitaciones para 3 personas pueden ser, 1 cama doble y 1 cama simple o 3 camas simples.</p>
+    </div>
+  </div>
+
+  <div class="disponibilidad">
+    <h3>Buscar Disponibilidad</h3>
+    <form (ngSubmit)="verificarDisponibilidad()">
+      <label for="fechaEntrada">Fecha de Entrada:</label>
+      <input type="date" id="fechaEntrada" name="fechaEntrada" [(ngModel)]="fechaEntrada" required>
+      
+      <label for="fechaSalida">Fecha de Salida:</label>
+      <input type="date" id="fechaSalida" name="fechaSalida" [(ngModel)]="fechaSalida" required>
+      
+      <label for="cantidadPersonas">Cantidad de Personas:</label>
+      <select id="cantidadPersonas" name="cantidadPersonas" [(ngModel)]="cantidadPersonas" required>
+        <option *ngFor="let num of [1, 2, 3]" [value]="num">{{ num }}</option>
+      </select>
+      
+      <button type="submit">Aceptar</button>
+    </form>
+  </div>
+
+  <div *ngIf="habitacionesDisponibles.length > 0" class="habitaciones-disponibles">
+    <h3>Habitaciones Disponibles</h3>
+    <div *ngFor="let habitacion of habitacionesDisponibles" class="habitacion">
+      <p>Habitación {{ habitacion.numero }} - {{ habitacion.tipo }}</p>
+      <button (click)="hacerReserva(habitacion.id_habitacion)">Reservar</button>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

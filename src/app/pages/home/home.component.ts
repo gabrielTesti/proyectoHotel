@@ -1,49 +1,64 @@
 import { Component } from '@angular/core';
+import { ReservaService } from 'src/app/service/reserva.service';
+import { Habitacion } from 'src/app/interfaces/habitacion';
 
 @Component({
   selector: 'app-home',
-  template: `
-    <app-header-welcome *ngIf="!isLoggedIn"></app-header-welcome>
-    <app-header-main *ngIf="isLoggedIn"></app-header-main>
-    
-    <main>
-  <div class="intro">
-    <h2>Servicios de Reserva</h2>
-    <p>Reserva tu habitación en línea y disfruta de las mejores tarifas en nuestro hotel. Nuestro sistema de reservas en línea es fácil de usar y seguro.</p>
-  </div>
-
-  <div class="services">
-    <h3>Nuestras Habitaciones</h3>
-    <div class="service">
-      <h4>Habitaciones para 2 personas</h4>
-      <p>El hotel ofrece habitaciones para 2 personas en formato de camas simples y dobles. Una habitación de 2 personas puede ser 1 cama doble o 2 camas simples.</p>
-    </div>
-    <div class="service">
-      <h4>Habitaciones para 3 personas</h4>
-      <p>Las habitaciones para 3 personas pueden ser, 1 cama doble y 1 cama simple o 3 camas simples.</p>
-    </div>
-  </div>
-
-  <div class="images">
-    <img src="assets/habitacion1.jpg" alt="Habitación 1">
-    <img src="assets/habitacion2.jpg" alt="Habitación 2">
-    <img src="assets/habitacion3.jpg" alt="Habitación 3">
-  </div>
-</main>
-
-    <app-footer></app-footer>
-  `,
+  templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  isLoggedIn = false;
+  estaLogueado = false;
+  fechaEntrada: string = "";
+  fechaSalida: string = "";
+  cantidadPersonas: number = 0;
+  habitacionesDisponibles: Habitacion[] = [];
 
+  constructor(private reservaService: ReservaService) { }
 
+  verificarDisponibilidad() {
+    const params = {
+      fechaEntrada: this.fechaEntrada,
+      fechaSalida: this.fechaSalida,
+      cantidadPersonas: this.cantidadPersonas.toString()
+    };
+    this.reservaService.obtenerReservas()
+      .subscribe(respuesta => {
+        this.habitacionesDisponibles = respuesta.payload.filter((habitacion: Habitacion) => {
+          // Lógica para filtrar habitaciones disponibles según los parámetros
+          const habitacionFechaEntrada = new Date(habitacion.fechaEntrada);
+          const habitacionFechaSalida = new Date(habitacion.fechaSalida);
+          const paramsFechaEntrada = new Date(params.fechaEntrada);
+          const paramsFechaSalida = new Date(params.fechaSalida);
 
+          return habitacionFechaEntrada <= paramsFechaEntrada &&
+                 habitacionFechaSalida >= paramsFechaSalida &&
+                 habitacion.cantidadPersonas >= parseInt(params.cantidadPersonas);
+        });
+      }, error => {
+        console.error('Error al verificar disponibilidad', error);
+      });
+  }
 
+  hacerReserva(idHabitacion: number) {
+    if (!this.estaLogueado) {
+      alert('Por favor, inicie sesión o regístrese para continuar.');
+      return;
+    }
 
+    const datosReserva = {
+      fechaEntrada: this.fechaEntrada,
+      fechaSalida: this.fechaSalida,
+      cantidadPersonas: this.cantidadPersonas,
+      idHabitacion: idHabitacion,
+      idUsuario: 1 // Cambia esto al ID del usuario logueado
+    };
 
+    this.reservaService.crearReserva(datosReserva)
+      .subscribe(respuesta => {
+        alert('Reserva realizada con éxito');
+      }, error => {
+        console.error('Error al hacer la reserva', error);
+      });
+  }
 }
-
-
-

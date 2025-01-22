@@ -12,16 +12,17 @@ main {
   align-items: center;
 }
 
-.intro, .services, .images {
+.intro, .servicios, .disponibilidad, .habitaciones-disponibles {
   width: 100%; /* Ocupa todo el ancho disponible */
 }
+
 .intro {
   margin-bottom: 20px;
   text-align: center; /* Centra el texto */
 }
 
 .intro h2 {
-  font-size: 38px; 
+  font-size: 32px; /* Letras más grandes */
   margin-bottom: 10px;
   color: #5D3A1A; /* Marrón más oscuro */
 }
@@ -32,18 +33,18 @@ main {
   color: #5D3A1A; /* Marrón más oscuro */
 }
 
-.services {
+.servicios {
   text-align: left;
   margin-bottom: 20px; /* Añade margen inferior para separar de las imágenes */
 }
 
-.services h3 {
-  font-size: 32px;
+.servicios h3 {
+  font-size: 28px;
   margin-bottom: 20px;
   color: #5D3A1A; /* Marrón más oscuro */
 }
 
-.service {
+.servicio {
   background-color: #fff;
   padding: 15px;
   margin-bottom: 20px;
@@ -51,26 +52,98 @@ main {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.service h4 {
+.servicio h4 {
   font-size: 24px;
   margin-bottom: 10px;
   color: #7e4821a9; /* Marrón */
 }
 
-.service p {
+.servicio p {
   font-size: 18px;
   color: #5D3A1A; /* Marrón más oscuro */
 }
 
-.images {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+.disponibilidad {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.images img {
-  max-width: 30%; /* Ajusta el ancho de las imágenes */
+.disponibilidad h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.disponibilidad form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.disponibilidad label {
+  margin: 10px 0 5px;
+  font-size: 16px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.disponibilidad input, .disponibilidad select {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.disponibilidad button {
+  background-color: #A52A2A; /* Marrón oscuro */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.disponibilidad button:hover {
+  background-color: #7B3F00; /* Marrón más oscuro */
+}
+
+.habitaciones-disponibles {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.habitaciones-disponibles h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.habitacion {
+  background-color: #fff;
+  padding: 15px;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.habitacion p {
+  font-size: 18px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+.habitacion button {
+  background-color: #A52A2A; /* Marrón oscuro */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.habitacion button:hover {
+  background-color: #7B3F00; /* Marrón más oscuro */
 }
