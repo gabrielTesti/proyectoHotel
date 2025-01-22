@@ -10,6 +10,7 @@ import { HeaderMainComponent } from './shared/layout/header-main/header-main.com
 import { HeaderWelcomeComponent } from './shared/layout/header-welcome/header-welcome.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ReservaPageComponent } from './pages/reserva-page/reserva-page.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HomeComponent } from './pages/home/home.component';
     HeaderMainComponent,
     HeaderWelcomeComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ReservaPageComponent
   ],
   imports: [
     BrowserModule,
