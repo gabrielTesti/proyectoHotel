@@ -9,7 +9,8 @@ import {MatInput, MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -59,7 +60,9 @@ import { OperadorComponent } from './pages/operador/operador.component';
     MatInputModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule,
+    MatTooltipModule
     
   ],
   providers: [],

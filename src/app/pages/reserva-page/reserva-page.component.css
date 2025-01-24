@@ -1,0 +1,13 @@
+main {
+    padding: 20px;
+    max-width: 2000px;
+    margin: 0 auto;
+    background-color: #f9f9f9; /* Fondo claro para contraste */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: calc(100vh - 160px); /* Altura mínima para ocupar el espacio entre header y footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinea los elementos al inicio */
+    align-items: center;
+  }

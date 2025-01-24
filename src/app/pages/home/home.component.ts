@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReservaService } from 'src/app/service/reserva.service';
 import { Habitacion } from 'src/app/interfaces/habitacion';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  estaLogueado = false;
+export class HomeComponent implements OnInit {
+  isLoggedIn = false;
   fechaEntrada: string = "";
   fechaSalida: string = "";
   cantidadPersonas: number = 0;
   habitacionesDisponibles: Habitacion[] = [];
 
-  constructor(private reservaService: ReservaService) { }
+  constructor(private reservaService: ReservaService, private loginService: LoginService) { }
+
+  ngOnInit(): void {
+    this.loginService.isLoggedIn().subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
 
   verificarDisponibilidad() {
     const params = {
@@ -41,7 +48,7 @@ export class HomeComponent {
   }
 
   hacerReserva(idHabitacion: number) {
-    if (!this.estaLogueado) {
+    if (!this.isLoggedIn) {
       alert('Por favor, inicie sesión o regístrese para continuar.');
       return;
     }

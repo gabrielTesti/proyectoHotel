@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Usuario } from '../../interfaces/usuario';
 
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<RegisterComponent>,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -55,14 +57,14 @@ export class RegisterComponent implements OnInit {
     this.usuarioService.crearUsuario(usuario).subscribe(
       (response: any) => {
         if (response.codigo === 200) {
-          alert('Usuario registrado con éxito');
+          this.snackBar.open('Usuario registrado con éxito', 'Cerrar', { duration: 3000 });
           this.dialogRef.close();
         } else {
-          alert(response.mensaje);
+          this.snackBar.open(response.mensaje, 'Cerrar', { duration: 3000 });
         }
       },
       (error) => {
-        alert('Error al registrar usuario');
+        this.snackBar.open('Error al registrar usuario', 'Cerrar', { duration: 3000 });
       }
     );
   }

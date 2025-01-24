@@ -1,4 +1,4 @@
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,17 +7,16 @@ header {
   color: white;
 }
 
-header h1 {
-  margin: 0;
+.welcome-text {
   font-size: 24px;
 }
 
-header div {
+.auth-buttons {
   display: flex;
   align-items: center;
 }
 
-header button {
+.btn {
   background-color: #5D4037; /* Marrón oscuro */
   color: white;
   border: none;
@@ -25,10 +24,9 @@ header button {
   cursor: pointer;
   font-size: 16px;
   margin-left: 10px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  border-radius: 8px; /* Borde redondeado */
 }
 
-header button:hover {
-  background-color: #8D6E63; /* Marrón más claro */
+.btn:hover {
+  background-color: #8D6E63; /* Marrón claro */
 }

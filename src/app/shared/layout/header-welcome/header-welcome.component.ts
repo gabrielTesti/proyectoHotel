@@ -12,15 +12,15 @@ export class HeaderWelcomeComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  openLogin(): void {
-    this.dialog.open(LoginComponent, {
-      width: '400px'
+  openRegisterModal() {
+    this.dialog.open(RegisterComponent, {
+      width: "400px",
     });
   }
 
-  openRegister(): void {
-    this.dialog.open(RegisterComponent, {
-      width: '400px'
+  openLoginModal() {
+    this.dialog.open(LoginComponent, {
+      width: '400px',
     });
   }
 }

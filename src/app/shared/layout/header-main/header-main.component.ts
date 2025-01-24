@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/pages/login/login.component';
-import { RegisterComponent } from 'src/app/pages/register/register.component';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
 
 @Component({
@@ -9,40 +7,19 @@ import { LoginService } from 'src/app/service/login.service';
   templateUrl: './header-main.component.html',
   styleUrls: ['./header-main.component.css']
 })
-export class HeaderMainComponent {
-  isLoggedIn = false;
-  userName = '';
+export class HeaderMainComponent implements OnInit {
+  nombreUsuario: string = "";
+  tipoUsuario: string = "";
 
-  constructor(public dialog: MatDialog, private loginService: LoginService) {
-    this.loginService.isLoggedIn().subscribe(isLoggedIn => {
-      this.isLoggedIn = isLoggedIn;
-      if (isLoggedIn) {
-        const user = JSON.parse(localStorage.getItem('datosUsuario') || '{}');
-        this.userName = user.nombre;
-      }
-    });
+  constructor(private router: Router, private loginService: LoginService) { }
+
+  ngOnInit() {
+    this.nombreUsuario = localStorage.getItem('nombre') || "";
+    this.tipoUsuario = localStorage.getItem('rol') || "";
   }
 
-  openLogin(): void {
-    const dialogRef = this.dialog.open(LoginComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.success) {
-        this.isLoggedIn = true;
-        this.userName = result.userName;
-      }
-    });
-  }
-
-  openRegister(): void {
-    this.dialog.open(RegisterComponent, {
-      width: '400px'
-    });
-  }
-
-  logout(): void {
+  cerrarSesion() {
     this.loginService.logout();
-    this.isLoggedIn = false;
-    this.userName = '';
+    this.router.navigate(['/']);
   }
 }

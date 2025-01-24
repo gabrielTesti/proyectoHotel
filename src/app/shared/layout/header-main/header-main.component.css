@@ -1,36 +1,44 @@
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #7e4821a9; /* Marrón */
-    color: white;
-  }
-  
-  header h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  header div {
-    display: flex;
-    align-items: center;
-  }
-  
-  header span {
-    margin-right: 15px;
-    font-size: 18px;
-  }
-  
-  header button {
-    background-color: #A52A2A; /* Marrón oscuro */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  header button:hover {
-    background-color: #7B3F00; /* Marrón más oscuro */
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #7e4821a9; /* Marrón */
+  color: white;
+}
+
+.welcome-text {
+  font-size: 24px;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+}
+
+.header-info p {
+  margin-right: 10px;
+}
+
+.info-icon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn {
+  background-color: #5D4037; /* Marrón oscuro */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px; /* Borde redondeado */
+}
+
+.btn:hover {
+  background-color: #8D6E63; /* Marrón claro */
+}
+
+.nombreusuario{
+  margin-right: 15px;
+}
