@@ -34,8 +34,14 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordMatchValidator(form: FormGroup) {
-    return form.get('password')!.value === form.get('confirmPassword')!.value
-      ? null : { mismatch: true };
+    const password = form.get('password')!.value;
+    const confirmPassword = form.get('confirmPassword')!.value;
+    if (password !== confirmPassword) {
+      form.get('confirmPassword')!.setErrors({ mismatch: true });
+    } else {
+      form.get('confirmPassword')!.setErrors(null);
+    }
+    return null;
   }
 
   registrarUsuario(): void {

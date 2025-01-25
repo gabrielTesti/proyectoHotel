@@ -58,3 +58,9 @@ form {
   form button {
     margin-top: 12px; /* Reduce el margen superior */
   }
+
+
+
+  mat-form-field {
+    width: 100%;
+  }
