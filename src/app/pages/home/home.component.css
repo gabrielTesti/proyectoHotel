@@ -128,13 +128,44 @@ main {
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .habitacion p {
   font-size: 18px;
   color: #5D3A1A; /* Marrón más oscuro */
+}
+
+mat-card {
+  width: 100%;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-card-title {
+  font-size: 24px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+mat-card-subtitle {
+  font-size: 18px;
+  color: #7e4821a9; /* Marrón */
+}
+
+mat-card-content {
+  font-size: 18px;
+  color: #5D3A1A; /* Marrón más oscuro */
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .accept-button {

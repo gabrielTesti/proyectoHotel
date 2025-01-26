@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -62,7 +63,8 @@ import { OperadorComponent } from './pages/operador/operador.component';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule
     
   ],
   providers: [],

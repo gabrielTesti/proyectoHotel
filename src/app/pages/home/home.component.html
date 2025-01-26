@@ -28,8 +28,8 @@
       <label for="fechaSalida">Fecha de Salida:</label>
       <input type="date" id="fechaSalida" name="fechaSalida" [(ngModel)]="fechaSalida" required>
       
-      <label for="cantidadPersonas">Cantidad de Personas:</label>
-      <select id="cantidadPersonas" name="cantidadPersonas" [(ngModel)]="cantidadPersonas" required>
+      <label for="tipo">Cantidad de Personas:</label>
+      <select id="tipo" name="tipo" [(ngModel)]="tipo" required>
         <option *ngFor="let num of [1, 2, 3]" [value]="num">{{ num }}</option>
       </select>
       
@@ -40,8 +40,18 @@
   <div *ngIf="habitacionesDisponibles.length > 0" class="habitaciones-disponibles">
     <h3>Habitaciones Disponibles</h3>
     <div *ngFor="let habitacion of habitacionesDisponibles" class="habitacion">
-      <p>Habitación {{ habitacion.numero }} - {{ habitacion.tipo }}</p>
-      <button (click)="hacerReserva(habitacion.id_habitacion)">Reservar</button>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Habitación {{ habitacion.numero }}</mat-card-title>
+          <mat-card-subtitle>{{ habitacion.tipo }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Capacidad: {{ habitacion.tipo }} personas</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="hacerReserva(habitacion.id_habitacion)">Reservar</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </main>

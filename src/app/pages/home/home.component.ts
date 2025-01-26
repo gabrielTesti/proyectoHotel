@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservaService } from 'src/app/service/reserva.service';
+import { HabitacionService } from 'src/app/service/habitacion.service';
 import { Habitacion } from 'src/app/interfaces/habitacion';
 import { LoginService } from 'src/app/service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +14,15 @@ export class HomeComponent implements OnInit {
   isLoggedIn = false;
   fechaEntrada: string = "";
   fechaSalida: string = "";
-  cantidadPersonas: number = 0;
+  tipo: number = 0;
   habitacionesDisponibles: Habitacion[] = [];
 
-  constructor(private reservaService: ReservaService, private loginService: LoginService) { }
+  constructor(
+    private reservaService: ReservaService,
+    private habitacionService: HabitacionService,
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loginService.isLoggedIn().subscribe(isLoggedIn => {
@@ -27,21 +34,16 @@ export class HomeComponent implements OnInit {
     const params = {
       fechaEntrada: this.fechaEntrada,
       fechaSalida: this.fechaSalida,
-      cantidadPersonas: this.cantidadPersonas.toString()
+      tipo: this.tipo.toString()
     };
-    this.reservaService.obtenerReservas()
+    this.habitacionService.obtenerHabitaciones()
       .subscribe(respuesta => {
+        console.log('Respuesta de la API:', respuesta); // Añadir log para depuración
         this.habitacionesDisponibles = respuesta.payload.filter((habitacion: Habitacion) => {
           // Lógica para filtrar habitaciones disponibles según los parámetros
-          const habitacionFechaEntrada = new Date(habitacion.fechaEntrada);
-          const habitacionFechaSalida = new Date(habitacion.fechaSalida);
-          const paramsFechaEntrada = new Date(params.fechaEntrada);
-          const paramsFechaSalida = new Date(params.fechaSalida);
-
-          return habitacionFechaEntrada <= paramsFechaEntrada &&
-                 habitacionFechaSalida >= paramsFechaSalida &&
-                 habitacion.cantidadPersonas >= parseInt(params.cantidadPersonas);
+          return habitacion.tipo === params.tipo;
         });
+        console.log('Habitaciones disponibles:', this.habitacionesDisponibles); // Añadir log para depuración
       }, error => {
         console.error('Error al verificar disponibilidad', error);
       });
@@ -50,15 +52,16 @@ export class HomeComponent implements OnInit {
   hacerReserva(idHabitacion: number) {
     if (!this.isLoggedIn) {
       alert('Por favor, inicie sesión o regístrese para continuar.');
+      this.router.navigate(['/login']);
       return;
     }
 
     const datosReserva = {
-      fechaEntrada: this.fechaEntrada,
-      fechaSalida: this.fechaSalida,
-      cantidadPersonas: this.cantidadPersonas,
-      idHabitacion: idHabitacion,
-      idUsuario: 1 // Cambia esto al ID del usuario logueado
+      fecha_inicio: this.fechaEntrada,
+      fecha_fin: this.fechaSalida,
+      id_habitacion: idHabitacion,
+      id_usuario: 1, // Cambia esto al ID del usuario logueado
+      id_reserva_huesped: 1 // Cambia esto al ID del huesped correspondiente
     };
 
     this.reservaService.crearReserva(datosReserva)

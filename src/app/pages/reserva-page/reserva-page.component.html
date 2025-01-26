@@ -2,7 +2,21 @@
 
 <main>
   <h2>Reservar Habitación</h2>
-  <!-- Aquí puedes agregar el formulario de reserva de habitación -->
+  <form (ngSubmit)="hacerReserva()">
+    <label for="fechaInicio">Fecha de Inicio:</label>
+    <input type="date" id="fechaInicio" name="fechaInicio" [(ngModel)]="fechaInicio" required>
+    
+    <label for="fechaFin">Fecha de Fin:</label>
+    <input type="date" id="fechaFin" name="fechaFin" [(ngModel)]="fechaFin" required>
+    
+    <label for="idHabitacion">ID de Habitación:</label>
+    <input type="number" id="idHabitacion" name="idHabitacion" [(ngModel)]="idHabitacion" required>
+    
+    <label for="idHuesped">ID de Huésped:</label>
+    <input type="number" id="idHuesped" name="idHuesped" [(ngModel)]="idHuesped" required>
+    
+    <button type="submit" class="accept-button">Reservar</button>
+  </form>
 </main>
 
 <app-footer></app-footer>
