@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Habitacion } from '../interfaces/habitacion';
 
@@ -11,19 +11,26 @@ export class HabitacionService {
 
   constructor(private http: HttpClient) { }
 
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token'); // Asumiendo que el token se almacena en localStorage
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
   obtenerHabitaciones(): Observable<any> {
-    return this.http.get(`${this.API_URL}/obtenerHabitaciones`);
+    return this.http.get(`${this.API_URL}/obtenerHabitaciones`, { headers: this.getHeaders() });
   }
 
   obtenerHabitacion(id: number): Observable<any> {
-    return this.http.get(`${this.API_URL}/obtenerHabitacion/${id}`);
+    return this.http.get(`${this.API_URL}/obtenerHabitacion/${id}`, { headers: this.getHeaders() });
   }
 
   crearHabitacion(habitacion: Habitacion): Observable<any> {
-    return this.http.post(`${this.API_URL}/crearHabitacion`, habitacion);
+    return this.http.post(`${this.API_URL}/crearHabitacion`, habitacion, { headers: this.getHeaders() });
   }
 
   actualizarHabitacion(id: number, habitacion: Habitacion): Observable<any> {
-    return this.http.put(`${this.API_URL}/actualizarHabitacion/${id}`, habitacion);
+    return this.http.put(`${this.API_URL}/actualizarHabitacion/${id}`, habitacion, { headers: this.getHeaders() });
   }
 }

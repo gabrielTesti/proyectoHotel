@@ -36,39 +36,31 @@ export class HomeComponent implements OnInit {
       fechaSalida: this.fechaSalida,
       tipo: this.tipo.toString()
     };
+
     this.habitacionService.obtenerHabitaciones()
       .subscribe(respuesta => {
-        console.log('Respuesta de la API:', respuesta); // Añadir log para depuración
-        this.habitacionesDisponibles = respuesta.payload.filter((habitacion: Habitacion) => {
-          // Lógica para filtrar habitaciones disponibles según los parámetros
-          return habitacion.tipo === params.tipo;
-        });
-        console.log('Habitaciones disponibles:', this.habitacionesDisponibles); // Añadir log para depuración
+        if (respuesta && respuesta.payload) {
+          this.habitacionesDisponibles = respuesta.payload.filter((habitacion: Habitacion) => {
+            return habitacion.tipo === params.tipo && habitacion.estado === 'libre';
+          });
+        }
       }, error => {
         console.error('Error al verificar disponibilidad', error);
       });
   }
 
-  hacerReserva(idHabitacion: number) {
+  reservarHabitacion(idHabitacion: number) {
     if (!this.isLoggedIn) {
-      alert('Por favor, inicie sesión o regístrese para continuar.');
+      alert('Por favor, inicie sesión para realizar una reserva.');
       this.router.navigate(['/login']);
       return;
     }
-
-    const datosReserva = {
-      fecha_inicio: this.fechaEntrada,
-      fecha_fin: this.fechaSalida,
-      id_habitacion: idHabitacion,
-      id_usuario: 1, // Cambia esto al ID del usuario logueado
-      id_reserva_huesped: 1 // Cambia esto al ID del huesped correspondiente
-    };
-
-    this.reservaService.crearReserva(datosReserva)
-      .subscribe(respuesta => {
-        alert('Reserva realizada con éxito');
-      }, error => {
-        console.error('Error al hacer la reserva', error);
-      });
+    this.router.navigate(['/reserva'], { 
+      queryParams: { 
+        idHabitacion: idHabitacion,
+        fechaEntrada: this.fechaEntrada,
+        fechaSalida: this.fechaSalida
+      }
+    });
   }
 }

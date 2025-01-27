@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
 
 
 
@@ -64,7 +65,8 @@ import { OperadorComponent } from './pages/operador/operador.component';
     MatNativeDateModule,
     MatSnackBarModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
     
   ],
   providers: [],
