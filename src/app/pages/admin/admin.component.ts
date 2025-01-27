@@ -60,10 +60,12 @@ export class AdminComponent implements OnInit {
 
     this.habitacionService.crearHabitacion(habitacion).subscribe(response => {
       if (response.codigo === 200) {
+        console.log('Habitación creada exitosamente');
         alert('Habitación creada exitosamente');
         this.resetForm();
         this.obtenerHabitaciones();
       } else {
+        console.error('Error al crear la habitación');
         alert('Error al crear la habitación');
       }
     }, error => {
@@ -88,10 +90,12 @@ export class AdminComponent implements OnInit {
 
     this.habitacionService.actualizarHabitacion(habitacion.id_habitacion, habitacion).subscribe(response => {
       if (response.codigo === 200) {
+        console.log('Habitación actualizada exitosamente');
         alert('Habitación actualizada exitosamente');
         this.resetForm();
         this.obtenerHabitaciones();
       } else {
+        console.error('Error al actualizar la habitación');
         alert('Error al actualizar la habitación');
       }
     }, error => {
