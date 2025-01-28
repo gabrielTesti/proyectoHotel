@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modificar-usuario',
@@ -15,7 +16,11 @@ export class ModificarUsuarioComponent implements OnInit {
   usuarios: Usuario[] = [];
   usuarioSeleccionado: Usuario | null = null;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {}
 
@@ -28,10 +33,15 @@ export class ModificarUsuarioComponent implements OnInit {
           (this.dni ? usuario.dni.includes(this.dni) : true)
         );
       } else {
-        alert('Error al buscar usuarios');
+        this.snackBar.open('Error al buscar usuarios', 'Cerrar', {
+          duration: 3000,
+        });
       }
     }, error => {
       console.error('Error al buscar usuarios', error);
+      this.snackBar.open('Error al buscar usuarios', 'Cerrar', {
+        duration: 3000,
+      });
     });
   }
 
@@ -43,14 +53,21 @@ export class ModificarUsuarioComponent implements OnInit {
     if (this.usuarioSeleccionado && this.usuarioSeleccionado.id_usuario) {
       this.usuarioService.actualizarUsuario(this.usuarioSeleccionado.id_usuario, this.usuarioSeleccionado).subscribe(response => {
         if (response.codigo === 200) {
-          alert('Usuario actualizado exitosamente');
+          this.snackBar.open('Usuario actualizado exitosamente', 'Cerrar', {
+            duration: 3000,
+          });
           this.usuarioSeleccionado = null;
           this.usuarios = [];
         } else {
-          alert('Error al actualizar el usuario');
+          this.snackBar.open('Error al actualizar el usuario', 'Cerrar', {
+            duration: 3000,
+          });
         }
       }, error => {
         console.error('Error al actualizar el usuario', error);
+        this.snackBar.open('Error al actualizar el usuario', 'Cerrar', {
+          duration: 3000,
+        });
       });
     }
   }
