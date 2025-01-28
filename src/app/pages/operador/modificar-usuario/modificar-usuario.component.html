@@ -3,7 +3,41 @@
 <main class="operador-container">
   <h2>Modificar Usuario</h2>
 
-  <!-- Aquí va el contenido específico de Modificar Usuario -->
+  <div *ngIf="!usuarioSeleccionado" class="search-section">
+    <input type="text" [(ngModel)]="nombre" placeholder="Nombre">
+    <input type="text" [(ngModel)]="apellido" placeholder="Apellido">
+    <input type="text" [(ngModel)]="dni" placeholder="DNI">
+    <button (click)="buscarUsuarios()">Buscar</button>
+  </div>
+
+  <div *ngIf="usuarios.length > 0 && !usuarioSeleccionado" class="result-section">
+    <h3>Resultados</h3>
+    <ul>
+      <li *ngFor="let usuario of usuarios" (click)="seleccionarUsuario(usuario)">
+        {{ usuario.nombre }} {{ usuario.apellido }} - DNI: {{ usuario.dni }}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="usuarioSeleccionado" class="edit-section">
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="usuarioSeleccionado.nombre">
+    <label>Apellido:</label>
+    <input type="text" [(ngModel)]="usuarioSeleccionado.apellido">
+    <label>DNI:</label>
+    <input type="text" [(ngModel)]="usuarioSeleccionado.dni">
+    <label>Email:</label>
+    <input type="text" [(ngModel)]="usuarioSeleccionado.email">
+    <label>Teléfono:</label>
+    <input type="text" [(ngModel)]="usuarioSeleccionado.telefono">
+    <label>Fecha de Nacimiento:</label>
+    <input type="text" [(ngModel)]="usuarioSeleccionado.fecha_nacimiento">
+    <label>Rol:</label>
+    <input type="text" [(ngModel)]="usuarioSeleccionado.rol">
+    <!-- Agrega otros campos necesarios aquí -->
+    <button (click)="guardarUsuario()">Guardar</button>
+    <button (click)="cancelar()">Cancelar</button>
+  </div>
 </main>
 
 <app-footer></app-footer>

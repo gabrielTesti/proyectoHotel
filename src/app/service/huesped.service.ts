@@ -18,8 +18,8 @@ export class HuespedService {
     });
   }
 
-  obtenerHuespedReserva(id: number): Observable<{ codigo: number, mensaje: string, payload: Huesped[] }> {
-    return this.http.get<{ codigo: number, mensaje: string, payload: Huesped[] }>(`${this.apiUrl}/obtenerHuespedReserva/${id}`, { headers: this.getHeaders() });
+  obtenerHuespedReserva(dni: string): Observable<{ codigo: number, mensaje: string, payload: Huesped[] }> {
+    return this.http.get<{ codigo: number, mensaje: string, payload: Huesped[] }>(`${this.apiUrl}/obtenerHuespedReserva/${dni}`, { headers: this.getHeaders() });
   }
 
   agregarHuespedes(huesped: Huesped): Observable<{ codigo: number, mensaje: string, payload: any[] }> {
@@ -29,4 +29,4 @@ export class HuespedService {
   actualizarHuespedes(id: number, huesped: Huesped): Observable<{ codigo: number, mensaje: string, payload: any[] }> {
     return this.http.put<{ codigo: number, mensaje: string, payload: any[] }>(`${this.apiUrl}/actualizarHuespedes/${id}`, huesped, { headers: this.getHeaders() });
   }
-}
+} 

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { HuespedService } from 'src/app/service/huesped.service';
 import { HabitacionService } from 'src/app/service/habitacion.service';
-import { ReservaService } from 'src/app/service/reserva.service';
-import { Huesped } from 'src/app/interfaces/huesped';
 import { Habitacion } from 'src/app/interfaces/habitacion';
 
 @Component({
@@ -11,42 +8,12 @@ import { Habitacion } from 'src/app/interfaces/habitacion';
   styleUrls: ['./checkin-checkout.component.css']
 })
 export class CheckinCheckoutComponent {
-  dni: string = '';
   habitacionNumero: number = 0;
-  huesped: Huesped | null = null;
   habitacion: Habitacion | null = null;
 
   constructor(
-    private huespedService: HuespedService,
-    private habitacionService: HabitacionService,
-    private reservaService: ReservaService
+    private habitacionService: HabitacionService
   ) { }
-
-  buscarHuesped() {
-    const dniNumber = Number(this.dni);
-    if (isNaN(dniNumber)) {
-      alert('Por favor, ingrese un DNI válido');
-      return;
-    }
-
-    this.huespedService.obtenerHuespedReserva(dniNumber).subscribe(response => {
-      if (response.codigo === 200) {
-        this.huesped = response.payload[0];
-        this.reservaService.obtenerReservaUsuario(this.huesped.id_reserva_huesped).subscribe(reservaResponse => {
-          if (reservaResponse.codigo === 200) {
-            const reserva = reservaResponse.payload[0];
-            this.buscarHabitacionPorNumero(reserva.id_habitacion);
-          } else {
-            alert('Reserva no encontrada');
-          }
-        });
-      } else {
-        alert('Huésped no encontrado');
-      }
-    }, error => {
-      console.error('Error al buscar el huésped', error);
-    });
-  }
 
   buscarHabitacion() {
     this.buscarHabitacionPorNumero(this.habitacionNumero);
@@ -54,11 +21,14 @@ export class CheckinCheckoutComponent {
 
   buscarHabitacionPorNumero(numero: number) {
     this.habitacionService.obtenerHabitaciones().subscribe(response => {
+      console.log('Respuesta del servicio obtenerHabitaciones:', response);
       if (response.codigo === 200) {
         const habitaciones: Habitacion[] = response.payload;
         this.habitacion = habitaciones.find(h => h.numero === numero) || null;
         if (!this.habitacion) {
           alert('Habitación no encontrada');
+        } else {
+          console.log('Habitación encontrada:', this.habitacion);
         }
       } else {
         alert('Error al obtener las habitaciones');

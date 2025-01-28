@@ -1,0 +1,83 @@
+.operador-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .search-section, .edit-section {
+    margin-bottom: 20px;
+  }
+  
+  .search-section input, .edit-section input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-section button, .edit-section button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .search-section button:hover, .edit-section button:hover {
+    background-color: #0056b3;
+  }
+  
+  .result-section {
+    margin-top: 20px;
+  }
+  
+  .result-section h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .result-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .result-section li {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .result-section li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .edit-section input {
+    width: calc(100% - 22px);
+  }
+  
+  .edit-section button {
+    margin-top: 10px;
+  }
