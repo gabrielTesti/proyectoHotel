@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HabitacionService } from 'src/app/service/habitacion.service';
 import { Habitacion } from 'src/app/interfaces/habitacion';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -19,7 +20,7 @@ export class AdminComponent implements OnInit {
   habitacionSeleccionada: Habitacion | null = null;
   filtroNumero: string = '';
 
-  constructor(private habitacionService: HabitacionService) { }
+  constructor(private habitacionService: HabitacionService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.obtenerHabitaciones();
@@ -61,21 +62,30 @@ export class AdminComponent implements OnInit {
     this.habitacionService.crearHabitacion(habitacion).subscribe(response => {
       if (response.codigo === 200) {
         console.log('Habitación creada exitosamente');
-        alert('Habitación creada exitosamente');
+        this.snackBar.open('Habitación creada exitosamente', 'Cerrar', {
+          duration: 3000,
+        });
         this.resetForm();
         this.obtenerHabitaciones();
       } else {
         console.error('Error al crear la habitación');
-        alert('Error al crear la habitación');
+        this.snackBar.open('Error al crear la habitación', 'Cerrar', {
+          duration: 3000,
+        });
       }
     }, error => {
       console.error('Error al crear la habitación', error);
+      this.snackBar.open('Error al crear la habitación', 'Cerrar', {
+        duration: 3000,
+      });
     });
   }
 
   actualizarHabitacion() {
     if (!this.habitacionSeleccionada) {
-      alert('Seleccione una habitación para actualizar');
+      this.snackBar.open('Seleccione una habitación para actualizar', 'Cerrar', {
+        duration: 3000,
+      });
       return;
     }
 
@@ -91,15 +101,22 @@ export class AdminComponent implements OnInit {
     this.habitacionService.actualizarHabitacion(habitacion.id_habitacion, habitacion).subscribe(response => {
       if (response.codigo === 200) {
         console.log('Habitación actualizada exitosamente');
-        alert('Habitación actualizada exitosamente');
+        this.snackBar.open('Habitación actualizada exitosamente', 'Cerrar', {
+          duration: 3000,
+        });
         this.resetForm();
         this.obtenerHabitaciones();
       } else {
         console.error('Error al actualizar la habitación');
-        alert('Error al actualizar la habitación');
+        this.snackBar.open('Error al actualizar la habitación', 'Cerrar', {
+          duration: 3000,
+        });
       }
     }, error => {
       console.error('Error al actualizar la habitación', error);
+      this.snackBar.open('Error al actualizar la habitación', 'Cerrar', {
+        duration: 3000,
+      });
     });
   }
 
