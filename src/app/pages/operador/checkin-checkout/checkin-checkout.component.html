@@ -1,0 +1,28 @@
+<app-header-main></app-header-main>
+
+<main class="operador-container">
+  <h2>Checkin/Checkout</h2>
+
+  <div class="search-section">
+    <h3>Buscar por DNI</h3>
+    <input type="text" [(ngModel)]="dni" placeholder="Ingrese DNI del huésped">
+    <button (click)="buscarHuesped()">Buscar</button>
+  </div>
+
+  <div class="search-section">
+    <h3>Buscar por Número de Habitación</h3>
+    <input type="number" [(ngModel)]="habitacionNumero" placeholder="Ingrese número de habitación">
+    <button (click)="buscarHabitacion()">Buscar</button>
+  </div>
+
+  <div *ngIf="habitacion" class="habitacion-info">
+    <h3>Habitación</h3>
+    <p>Número: {{ habitacion.numero }}</p>
+    <p>Tipo: {{ habitacion.tipo }}</p>
+    <p>Estado: {{ habitacion.estado }}</p>
+    <button (click)="realizarCheckin()" *ngIf="habitacion.estado === 'libre'">Checkin</button>
+    <button (click)="realizarCheckout()" *ngIf="habitacion.estado === 'ocupada'">Checkout</button>
+  </div>
+</main>
+
+<app-footer></app-footer>

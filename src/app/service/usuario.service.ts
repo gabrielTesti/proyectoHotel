@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,18 +11,19 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerUsuarios(): Observable<{ codigo: number, mensaje: string, payload: Usuario[] }> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token'); // Asumiendo que el token se almacena en localStorage
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
     });
-    return this.http.get<{ codigo: number, mensaje: string, payload: Usuario[] }>(`${this.apiUrl}/obtenerUsuarios`, { headers });
+  }
+
+  obtenerUsuarios(): Observable<{ codigo: number, mensaje: string, payload: Usuario[] }> {
+    return this.http.get<{ codigo: number, mensaje: string, payload: Usuario[] }>(`${this.apiUrl}/obtenerUsuarios`, { headers: this.getHeaders() });
   }
 
   obtenerUsuario(id: number): Observable<{ codigo: number, mensaje: string, payload: Usuario[] }> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get<{ codigo: number, mensaje: string, payload: Usuario[] }>(`${this.apiUrl}/obtenerUsuario/${id}`, { headers });
+    return this.http.get<{ codigo: number, mensaje: string, payload: Usuario[] }>(`${this.apiUrl}/obtenerUsuario/${id}`, { headers: this.getHeaders() });
   }
 
   crearUsuario(usuario: Usuario): Observable<{ codigo: number, mensaje: string, payload: any[] }> {
@@ -31,9 +31,6 @@ export class UsuarioService {
   }
 
   actualizarUsuario(id: number, usuario: Usuario): Observable<{ codigo: number, mensaje: string, payload: any[] }> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.put<{ codigo: number, mensaje: string, payload: any[] }>(`${this.apiUrl}/actualizarUsuario/${id}`, usuario, { headers });
+    return this.http.put<{ codigo: number, mensaje: string, payload: any[] }>(`${this.apiUrl}/actualizarUsuario/${id}`, usuario, { headers: this.getHeaders() });
   }
 }

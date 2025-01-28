@@ -35,6 +35,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { OperadorComponent } from './pages/operador/operador.component';
+import { CheckinCheckoutComponent } from './pages/operador/checkin-checkout/checkin-checkout.component';
+import { ReservarComponent } from './pages/operador/reservar/reservar.component';
+import { ModificarUsuarioComponent } from './pages/operador/modificar-usuario/modificar-usuario.component';
 
 
 @NgModule({
@@ -48,7 +51,10 @@ import { OperadorComponent } from './pages/operador/operador.component';
     LoginComponent,
     RegisterComponent,
     AdminComponent,
-    OperadorComponent
+    OperadorComponent,
+    CheckinCheckoutComponent,
+    ReservarComponent,
+    ModificarUsuarioComponent
   ],
   imports: [
     BrowserModule,

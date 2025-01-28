@@ -1,8 +1,19 @@
 <app-header-main></app-header-main>
 
-<main>
+<main class="operador-container">
   <h2>Operador Panel</h2>
-  <!-- Aquí puedes agregar el contenido específico de la página de operador -->
+
+  <nav class="menu">
+    <ul>
+      <li><a routerLink="checkin-checkout" routerLinkActive="active-link">Checkin/Checkout</a></li>
+      <li><a routerLink="reservar" routerLinkActive="active-link">Reservar Habitación</a></li>
+      <li><a routerLink="modificar-usuario" routerLinkActive="active-link">Modificar Usuario</a></li>
+    </ul>
+  </nav>
+
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
 </main>
 
 <app-footer></app-footer>
