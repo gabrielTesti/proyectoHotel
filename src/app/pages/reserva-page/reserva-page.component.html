@@ -1,22 +1,72 @@
 <app-header-main></app-header-main>
 
-<main>
-  <h2>Reservar Habitación</h2>
-  <form (ngSubmit)="hacerReserva()">
-    <label for="fechaInicio">Fecha de Inicio:</label>
-    <input type="date" id="fechaInicio" name="fechaInicio" [(ngModel)]="fechaInicio" required>
-    
-    <label for="fechaFin">Fecha de Fin:</label>
-    <input type="date" id="fechaFin" name="fechaFin" [(ngModel)]="fechaFin" required>
-    
-    <label for="idHabitacion">ID de Habitación:</label>
-    <input type="number" id="idHabitacion" name="idHabitacion" [(ngModel)]="idHabitacion" required>
-    
-    <label for="idHuesped">ID de Huésped:</label>
-    <input type="number" id="idHuesped" name="idHuesped" [(ngModel)]="idHuesped" required>
-    
-    <button type="submit" class="accept-button">Reservar</button>
-  </form>
+<main class="reserva-container">
+  <nav class="nav-modificar-datos">
+    <button class="modificar-datos-button" (click)="modificarDatos()">Modificar Datos</button>
+  </nav>
+
+  <h2>Reserva de Habitación</h2>
+
+  <div *ngIf="habitacion" class="habitacion-info">
+    <p>Fecha de Entrada: {{ fechaInicio }}</p>
+    <p>Fecha de Salida: {{ fechaFin }}</p>
+    <p>Tipo de Habitación: {{ habitacion.tipo }}</p>
+    <p>Cantidad de Camas Simples: {{ habitacion.cantidad_camas_simples }}</p>
+    <p>Cantidad de Camas Dobles: {{ habitacion.cantidad_camas_dobles }}</p>
+    <p>Cantidad de Huéspedes: {{ tipo }}</p>
+
+    <div *ngFor="let huesped of huespedes; let i = index" class="huesped-info">
+      <h3>Huésped {{ i + 1 }}</h3>
+      <label for="nombre-{{ i }}">Nombre:</label>
+      <input id="nombre-{{ i }}" [(ngModel)]="huesped.nombre" required>
+      
+      <label for="apellido-{{ i }}">Apellido:</label>
+      <input id="apellido-{{ i }}" [(ngModel)]="huesped.apellido" required>
+      
+      <label for="dni-{{ i }}">DNI:</label>
+      <input id="dni-{{ i }}" [(ngModel)]="huesped.dni" required>
+    </div>
+
+    <button (click)="reservar()">Aceptar</button>
+    <button (click)="cancelar()">Cancelar</button>
+  </div>
+
+  <div class="disponibilidad">
+    <h3>Buscar Disponibilidad</h3>
+    <form (ngSubmit)="verificarDisponibilidad()">
+      <label for="fechaEntrada">Fecha de Entrada:</label>
+      <input type="date" id="fechaEntrada" name="fechaEntrada" [(ngModel)]="fechaInicio" required>
+      
+      <label for="fechaSalida">Fecha de Salida:</label>
+      <input type="date" id="fechaSalida" name="fechaSalida" [(ngModel)]="fechaFin" required>
+      
+      <label for="tipo">Cantidad de Personas:</label>
+      <select id="tipo" name="tipo" [(ngModel)]="tipo" required>
+        <option *ngFor="let num of [1, 2, 3]" [value]="num">{{ num }}</option>
+      </select>
+      
+      <button type="submit" class="accept-button">Aceptar</button>
+    </form>
+  </div>
+
+  <div *ngIf="habitacionesDisponibles.length > 0" class="habitaciones-disponibles">
+    <h3>Habitaciones Disponibles</h3>
+    <div *ngFor="let habitacion of habitacionesDisponibles" class="habitacion">
+      <div class="habitacion-card">
+        <div class="habitacion-header">
+          <h4>Habitación {{ habitacion.numero }}</h4>
+          <h5>{{ habitacion.tipo }}</h5>
+        </div>
+        <div class="habitacion-content">
+          <p>Camas Simples: {{ habitacion.cantidad_camas_simples }}</p>
+          <p>Camas Dobles: {{ habitacion.cantidad_camas_dobles }}</p>
+        </div>
+        <div class="habitacion-actions">
+          <button (click)="reservarHabitacion(habitacion.id_habitacion)">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <app-footer></app-footer>

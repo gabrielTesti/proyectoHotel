@@ -38,6 +38,7 @@ import { OperadorComponent } from './pages/operador/operador.component';
 import { CheckinCheckoutComponent } from './pages/operador/checkin-checkout/checkin-checkout.component';
 import { ReservarComponent } from './pages/operador/reservar/reservar.component';
 import { ModificarUsuarioComponent } from './pages/operador/modificar-usuario/modificar-usuario.component';
+import { ModificarDatosPersonalesComponent } from './pages/modificar-datos-personales/modificar-datos-personales.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ModificarUsuarioComponent } from './pages/operador/modificar-usuario/mo
     OperadorComponent,
     CheckinCheckoutComponent,
     ReservarComponent,
-    ModificarUsuarioComponent
+    ModificarUsuarioComponent,
+    ModificarDatosPersonalesComponent
   ],
   imports: [
     BrowserModule,

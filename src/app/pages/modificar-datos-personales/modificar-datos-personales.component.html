@@ -1,0 +1,56 @@
+<app-header-main></app-header-main>
+
+<main class="modificar-datos-container">
+  <h2>Modificar Datos Personales</h2>
+  <form [formGroup]="usuarioForm" (ngSubmit)="guardar()">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" required>
+      <mat-error *ngIf="usuarioForm.get('nombre')?.hasError('required')">El nombre es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido" required>
+      <mat-error *ngIf="usuarioForm.get('apellido')?.hasError('required')">El apellido es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required>
+      <mat-error *ngIf="usuarioForm.get('email')?.hasError('required')">El email es requerido</mat-error>
+      <mat-error *ngIf="usuarioForm.get('email')?.hasError('email')">El email no es válido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>DNI</mat-label>
+      <input matInput formControlName="dni" required>
+      <mat-error *ngIf="usuarioForm.get('dni')?.hasError('required')">El DNI es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fecha_nacimiento" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="usuarioForm.get('fecha_nacimiento')?.hasError('required')">La fecha de nacimiento es requerida</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono" required>
+      <mat-error *ngIf="usuarioForm.get('telefono')?.hasError('required')">El teléfono es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nueva Contraseña</mat-label>
+      <input matInput type="password" formControlName="password">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input matInput type="password" formControlName="confirmPassword">
+      <mat-error *ngIf="usuarioForm.get('confirmPassword')?.hasError('required')">La confirmación de la contraseña es requerida</mat-error>
+      <mat-error *ngIf="usuarioForm.hasError('passwordMismatch')">Las contraseñas no coinciden</mat-error>
+    </mat-form-field>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+      <button mat-raised-button color="warn" type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</main>
+
+<app-footer></app-footer>

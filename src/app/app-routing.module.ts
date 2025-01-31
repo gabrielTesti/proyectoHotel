@@ -7,10 +7,12 @@ import { ReservaPageComponent } from './pages/reserva-page/reserva-page.componen
 import { CheckinCheckoutComponent } from './pages/operador/checkin-checkout/checkin-checkout.component';
 import { ReservarComponent } from './pages/operador/reservar/reservar.component';
 import { ModificarUsuarioComponent } from './pages/operador/modificar-usuario/modificar-usuario.component';
+import { ModificarDatosPersonalesComponent } from './pages/modificar-datos-personales/modificar-datos-personales.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'reserva-page', component: ReservaPageComponent },
+  { path: 'modificar-datos-personales', component: ModificarDatosPersonalesComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'operador', component: OperadorComponent },
   { path: 'operador/checkin-checkout', component: CheckinCheckoutComponent },
