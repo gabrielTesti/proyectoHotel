@@ -29,6 +29,10 @@ export class ModificarDatosPersonalesComponent implements OnInit {
       (response: any) => {
         if (response.codigo === 200 && response.payload.length > 0) {
           this.usuarioSeleccionado = response.payload[0];
+          // Formatear la fecha de nacimiento
+          if (this.usuarioSeleccionado?.fecha_nacimiento) {
+            this.usuarioSeleccionado.fecha_nacimiento = new Date(this.usuarioSeleccionado.fecha_nacimiento).toISOString().split('T')[0];
+          }
         } else {
           this.snackBar.open('Error al cargar los datos del usuario', 'Cerrar', { duration: 3000 });
         }
